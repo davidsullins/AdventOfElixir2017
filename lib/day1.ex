@@ -1,10 +1,15 @@
 # day1.ex
 # captcha
 
-# TODO: Read input from a file and print result
-# So far I used iex to interactively give it my input because I don't know file I/O yet
-
 defmodule Day1 do
+  def day1 do
+    input = String.trim_trailing(File.read! "input/input1.txt")
+    output1 = captcha1(input)
+    output2 = captcha2(input)
+    IO.puts "Captcha 1: #{output1}"
+    IO.puts "Captcha 1: #{output2}"
+  end
+
   ########
   # Part 1
   def captcha1(str) do
