@@ -28,8 +28,7 @@ defmodule Day1 do
   def captcha2(str) do
     len = String.length(str)
     half_len = div(len, 2)
-    rotated_str = String.slice(str, half_len, half_len) <> String.slice(str, 0, half_len)
-    sum_pairs2(str, rotated_str, 0)
+    2 * sum_pairs2(String.slice(str, 0, half_len), String.slice(str, half_len, half_len), 0)
   end
 
   defp sum_pairs2(<<c::integer, rest1::binary>>, <<c::integer, rest2::binary>>, acc) do
