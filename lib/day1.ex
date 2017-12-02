@@ -1,6 +1,9 @@
 # day1.ex
 # captcha
 
+# TODO: Read input from a file and print result
+# So far I used iex to interactively give it my input because I don't know file I/O yet
+
 defmodule Day1 do
   ########
   # Part 1
