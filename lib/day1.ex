@@ -5,18 +5,18 @@ defmodule Day1 do
   ########
   # Part 1
   def captcha1(str) do
-    last_char = String.last(str)
+    <<last_char>> = String.last(str)
     sum_pairs(str, last_char, 0)
   end
 
-  defp sum_pairs(<<c::integer, rest::binary>>, <<c>>, acc) do
+  defp sum_pairs(<<c::integer, rest::binary>>, c, acc) do
     # code point 48 is '0', 49 is '1', etc
     num = c - 48
-    sum_pairs(rest, <<c>>, acc + num)
+    sum_pairs(rest, c, acc + num)
   end
 
   defp sum_pairs(<<c2, rest::binary>>, _, acc) do
-    sum_pairs(rest, <<c2>>, acc)
+    sum_pairs(rest, c2, acc)
   end
 
   defp sum_pairs(_, _, acc) do
