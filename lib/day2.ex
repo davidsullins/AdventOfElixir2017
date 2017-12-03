@@ -38,16 +38,18 @@ defmodule Day2 do
     String.split(str, "\n")
     |> Enum.map(&parse_line(&1))
     |> Enum.map(&find_div_pair(&1))
-    |> Enum.map(fn [x] -> x end)
     |> Enum.sum
   end
 
   # [5, 9, 2, 8] -> {8, 2} -> 4
   # find the pairs that are even divisible and divide them
   # apparently there are no 0's in the input
-  def find_div_pair([]), do: [0]
+  def find_div_pair([]), do: 0
   def find_div_pair(nums) do
-    for x <- nums, y <- nums, x != y, rem(x, y) == 0, do: div(x, y)
+    # The instructions imply there will be only one divisible pair per line
+    # We assert this through pattern matching
+    [dividend] = for x <- nums, y <- nums, x != y, rem(x, y) == 0, do: div(x, y)
+    dividend
   end
 
   # "5 1 9 5\n" -> [5, 1, 9, 5]
