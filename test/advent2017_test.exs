@@ -21,7 +21,15 @@ defmodule Advent2017Test do
     assert Day2.calc_line_range("2 4 6 8") == 6
 
     input = "5 1 9 5\n7 5 3\n2 4 6 8\n"
-    assert Day2.calc_checksum(input) == 18
+    assert Day2.calc_checksum1(input) == 18
   end
 
+  test "day2 part 2" do
+    assert Day2.parse_line("5 1 9 5\n") == [5, 1, 9, 5]
+    assert Day2.parse_line(" 7 5 3") == [7, 5, 3]
+    assert Day2.parse_line("2 4 6 8") == [2, 4, 6, 8]
+
+    input = "5 9 2 8\n9 4 7 3\n3 8 6 5\n"
+    assert Day2.calc_checksum2(input) == 9
+  end
 end

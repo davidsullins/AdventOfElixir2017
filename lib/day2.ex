@@ -4,13 +4,15 @@
 defmodule Day2 do
   def day2 do
     input = String.trim_trailing(File.read! "input/input2.txt")
-    output1 = calc_checksum(input)
+    output1 = calc_checksum1(input)
+    output2 = calc_checksum2(input)
     IO.puts "Checksum part 1: #{output1}"
+    IO.puts "Checksum part 2: #{output2}"
   end
 
   ########
   # Part 1
-  def calc_checksum(str) do
+  def calc_checksum1(str) do
     String.split(str, "\n")
     |> Enum.map(&calc_line_range(&1))
     |> Enum.sum
@@ -28,5 +30,29 @@ defmodule Day2 do
     maximum = max(maximum, num)
     minimum = min(minimum, num)
     calc_line_range(String.trim_leading(line), minimum, maximum)
+  end
+
+  ########
+  # Part 2
+  def calc_checksum2(str) do
+    String.split(str, "\n")
+    |> Enum.map(&parse_line(&1))
+    |> Enum.map(&find_div_pair(&1))
+    |> Enum.map(fn [x] -> x end)
+    |> Enum.sum
+  end
+
+  # [5, 9, 2, 8] -> {8, 2} -> 4
+  # find the pairs that are even divisible and divide them
+  # apparently there are no 0's in the input
+  def find_div_pair([]), do: [0]
+  def find_div_pair(nums) do
+    for x <- nums, y <- nums, x != y, rem(x, y) == 0, do: div(x, y)
+  end
+
+  # "5 1 9 5\n" -> [5, 1, 9, 5]
+  def parse_line(line) do
+    String.split(line)
+    |> Enum.map(&String.to_integer(&1))
   end
 end
