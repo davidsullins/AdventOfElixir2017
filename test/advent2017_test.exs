@@ -29,6 +29,10 @@ defmodule Advent2017Test do
     assert Day2.parse_line(" 7 5 3") == [7, 5, 3]
     assert Day2.parse_line("2 4 6 8") == [2, 4, 6, 8]
 
+    assert Day2.find_div_pair([5, 9, 2, 8]) == 4
+    assert Day2.find_div_pair([9, 4, 7, 3]) == 3
+    assert Day2.find_div_pair([3, 8, 6, 5]) == 2
+
     input = "5 9 2 8\n9 4 7 3\n3 8 6 5\n"
     assert Day2.calc_checksum2(input) == 9
   end
