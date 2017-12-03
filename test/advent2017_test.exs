@@ -36,4 +36,12 @@ defmodule Advent2017Test do
     input = "5 9 2 8\n9 4 7 3\n3 8 6 5\n"
     assert Day2.calc_checksum2(input) == 9
   end
+
+  test "day3 part 1" do
+    assert Day3.calc_manhattan_dist(1) == 0
+    assert Day3.calc_manhattan_dist(12) == 3
+    assert Day3.calc_manhattan_dist(23) == 2
+    assert Day3.calc_manhattan_dist(1024) == 31
+  end
+
 end
