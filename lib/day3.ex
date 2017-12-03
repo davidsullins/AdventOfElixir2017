@@ -7,7 +7,9 @@ defmodule Day3 do
             |> String.trim_trailing
             |> String.to_integer
     output1 = calc_manhattan_dist(input)
+    output2 = find_first_greater(input)
     IO.puts "Manhattan distance part 1: #{output1}"
+    IO.puts "First spiral value greater part 2: #{output2}"
   end
 
   ########
@@ -50,4 +52,37 @@ defmodule Day3 do
 
   defp find_next_highest_odd(x), do: if rem(x, 2) == 0, do: x + 1, else: x
 
+  ########
+  # Part 2
+  #
+  # The name of this sequence is "Square spiral of sums of selected preceding terms, starting at 1"
+  # https://oeis.org/A141481
+  #
+  # I started to work on actually calculating the solution, then realized I could instead use this
+  # opportunity to find out how to download the sequence from oeis.org and just parse that instead.
+  #
+  # Some may consider this cheating. I consider it creative problem solving.
+  def find_first_greater(num) do
+    # download sequence A141481 from OIES
+    Application.ensure_all_started :inets
+    {:ok, response}  = :httpc.request('http://oeis.org/A141481/b141481.txt')
+    {{_, 200, 'OK'}, _, a141481} = response
+
+    # split the file by lines, find the first line where the second value is greater than num
+    [_, str] = a141481
+               |> to_string
+               |> String.split("\n")
+               |> Enum.find(&second_is_greater(&1, num))
+               |> String.split
+    String.to_integer(str)
+  end
+
+  # true if second word in the string is a number greater than num
+  # example: second_is_greater("17 147", 100) -> true
+  # skip lines that begin with "#", those are comments
+  defp second_is_greater("#" <> _, _), do: false
+  defp second_is_greater(str, num) do
+    [_, word] = String.split(str)
+    String.to_integer(word) > num
+  end
 end

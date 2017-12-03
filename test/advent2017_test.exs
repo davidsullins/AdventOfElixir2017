@@ -44,4 +44,8 @@ defmodule Advent2017Test do
     assert Day3.calc_manhattan_dist(1024) == 31
   end
 
+  test "day3 part 2" do
+    assert Day3.find_first_greater(1) == 2
+    assert Day3.find_first_greater(2) == 4
+  end
 end
