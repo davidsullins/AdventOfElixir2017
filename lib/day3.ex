@@ -3,7 +3,8 @@
 
 defmodule Day3 do
   def day3 do
-    input = File.read!("input/input3.txt")
+    input = "input/input3.txt"
+            |> File.read!
             |> String.trim_trailing
             |> String.to_integer
     output1 = calc_manhattan_dist(input)

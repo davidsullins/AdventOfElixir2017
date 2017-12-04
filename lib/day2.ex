@@ -13,7 +13,8 @@ defmodule Day2 do
   ########
   # Part 1
   def calc_checksum1(str) do
-    String.split(str, "\n")
+    str
+    |> String.split("\n")
     |> Enum.map(&calc_line_range(&1))
     |> Enum.sum
   end
@@ -35,7 +36,8 @@ defmodule Day2 do
   ########
   # Part 2
   def calc_checksum2(str) do
-    String.split(str, "\n")
+    str
+    |> String.split("\n")
     |> Enum.map(&parse_line(&1))
     |> Enum.map(&find_div_pair(&1))
     |> Enum.sum
@@ -54,7 +56,8 @@ defmodule Day2 do
 
   # "5 1 9 5\n" -> [5, 1, 9, 5]
   def parse_line(line) do
-    String.split(line)
+    line
+    |> String.split
     |> Enum.map(&String.to_integer(&1))
   end
 end
