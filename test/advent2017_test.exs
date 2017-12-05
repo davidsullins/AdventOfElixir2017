@@ -50,4 +50,18 @@ defmodule Advent2017Test do
     assert Day3.find_first_greater(1) == 2
     assert Day3.find_first_greater(2) == 4
   end
+
+  test "day4 part 1" do
+    assert Day4.is_valid_passphrase1("aa bb cc dd ee") == true
+    assert Day4.is_valid_passphrase1("aa bb cc dd aa") == false
+    assert Day4.is_valid_passphrase1("aa bb cc dd aaa") == true
+  end
+
+  test "day4 part 2" do
+    assert Day4.is_valid_passphrase2("abcde fghij") == true
+    assert Day4.is_valid_passphrase2("abcde xyz ecbad") == false
+    assert Day4.is_valid_passphrase2("a ab abc abd abf abj") == true
+    assert Day4.is_valid_passphrase2("iii oiii ooii oooi oooo") == true
+    assert Day4.is_valid_passphrase2("oiii ioii iioi iiio") == false
+  end
 end
