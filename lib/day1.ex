@@ -2,6 +2,12 @@
 # captcha
 
 defmodule Day1 do
+  @moduledoc """
+  Day 1, count valid passphrases in input
+  Part 1: captcha is sum of all digits that match the next digit, string is considered circular
+  Part 2: captcha is sum of all digits that match the digit halfway around the circular string
+  """
+
   def day1 do
     input = String.trim_trailing(File.read! "input/input1.txt")
     output1 = captcha1(input)
@@ -53,4 +59,3 @@ defmodule Day1 do
     acc
   end
 end
-

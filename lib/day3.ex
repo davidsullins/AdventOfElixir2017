@@ -2,6 +2,12 @@
 # spiral numbers
 
 defmodule Day3 do
+  @moduledoc """
+  Day 3, spiral numbers
+  Part 1: Spiral just increments. Get the Manhattan distance from a given number back to 1
+  Part 2: Each element of spiral is sum of all adjacent numbers. Find the first value larger than given number
+  """
+
   def day3 do
     input = "input/input3.txt"
             |> File.read!

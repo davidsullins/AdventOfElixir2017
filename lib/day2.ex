@@ -2,6 +2,18 @@
 # spreadsheet checksum
 
 defmodule Day2 do
+  @moduledoc """
+  Day 2, calculate checksum for spreadsheet
+
+  Part 1:
+  Calculate the difference between the largest and smallest value in each row.
+  Checksum is the sum for all rows
+
+  Part 2:
+  Each row has exactly one pair that's evenly divisible, calculate the dividend.
+  Checksum is the sum for all rows
+  """
+
   def day2 do
     input = String.trim_trailing(File.read! "input/input2.txt")
     output1 = calc_checksum1(input)
