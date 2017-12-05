@@ -64,4 +64,12 @@ defmodule Advent2017Test do
     assert Day4.is_valid_passphrase2("iii oiii ooii oooi oooo") == true
     assert Day4.is_valid_passphrase2("oiii ioii iioi iiio") == false
   end
+
+  test "day5 part 1" do
+    assert Day5.count_steps1([0, 3, 0, 1, -3]) == 5
+  end
+
+  test "day5 part 2" do
+    assert Day5.count_steps2([0, 3, 0, 1, -3]) == 10
+  end
 end
