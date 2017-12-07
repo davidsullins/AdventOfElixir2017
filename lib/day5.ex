@@ -21,6 +21,8 @@ defmodule Day5 do
     IO.puts "steps (part 2, array): #{steps2}; #{time2 / 1_000_000}s"
     {time2, steps2} = :timer.tc(Day5, :count_steps2_tuple, [input])
     IO.puts "steps (part 2, tuple): #{steps2}; #{time2 / 1_000_000}s"
+    {time2, steps2} = :timer.tc(Day5, :count_steps2_map, [input])
+    IO.puts "steps (part 2, map): #{steps2}; #{time2 / 1_000_000}s"
   end
 
   ########
@@ -66,5 +68,20 @@ defmodule Day5 do
     new_offset = if offset > 2, do: offset - 1, else: offset + 1
     new_maze = put_elem(maze, pos, new_offset)
     if new_pos >= tuple_size(maze) or new_pos < 0, do: step_count, else: jump2_tuple(new_maze, new_pos, step_count + 1)
+  end
+
+  def count_steps2_map(input) do
+    0..length(input)
+    |> Enum.zip(input)
+    |> Enum.into(%{})
+    |> jump2_map(0, 1)
+  end
+
+  defp jump2_map(maze, pos, step_count) do
+    offset = maze[pos]
+    new_pos = pos + offset
+    new_offset = if offset > 2, do: offset - 1, else: offset + 1
+    new_maze = Map.put(maze, pos, new_offset)
+    if new_pos >= map_size(maze) or new_pos < 0, do: step_count, else: jump2_map(new_maze, new_pos, step_count + 1)
   end
 end

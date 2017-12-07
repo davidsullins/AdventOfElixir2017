@@ -72,5 +72,6 @@ defmodule Advent2017Test do
   test "day5 part 2" do
     assert Day5.count_steps2_array([0, 3, 0, 1, -3]) == 10
     assert Day5.count_steps2_tuple([0, 3, 0, 1, -3]) == 10
+    assert Day5.count_steps2_map([0, 3, 0, 1, -3]) == 10
   end
 end
