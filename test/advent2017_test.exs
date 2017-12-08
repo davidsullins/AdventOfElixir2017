@@ -74,4 +74,12 @@ defmodule Advent2017Test do
     assert Day5.count_steps2_tuple([0, 3, 0, 1, -3]) == 10
     assert Day5.count_steps2_map([0, 3, 0, 1, -3]) == 10
   end
+
+  test "day6 part 1" do
+    assert Day6.find_cycle1([0, 2, 7, 0]) == 5
+  end
+
+  test "day6 part 2" do
+    assert Day6.find_cycle2([0, 2, 7, 0]) == 4
+  end
 end
