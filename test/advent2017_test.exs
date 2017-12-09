@@ -100,4 +100,34 @@ defmodule Advent2017Test do
       "cntj (57)"]) == "tknk"
   end
 
+  test "day9 part 1" do
+    assert "pants" == Day9.skip_garbage(">pants")
+    assert "pants" == Day9.skip_garbage("random characters>pants")
+    assert "pants" == Day9.skip_garbage("<<<>pants")
+    assert "pants" == Day9.skip_garbage("{!>}>pants")
+    assert "pants" == Day9.skip_garbage("!!>pants")
+    assert "pants" == Day9.skip_garbage("!!!>>pants")
+    assert "pants" == Day9.skip_garbage("{o\"i!a,<{i<a>pants")
+
+    assert Day9.calc_score("{}") == 1
+    assert Day9.calc_score("{{{}}}") == 6
+    assert Day9.calc_score("{{},{}}") == 5
+    assert Day9.calc_score("{{{},{},{{}}}}") == 16
+    assert Day9.calc_score("{<a>,<a>,<a>,<a>}") == 1
+    assert Day9.calc_score("{{<ab>},{<ab>},{<ab>},{<ab>}}") == 9
+    assert Day9.calc_score("{{<!!>},{<!!>},{<!!>},{<!!>}}") == 9
+    assert Day9.calc_score("{{<a!>},{<a!>},{<a!>},{<ab>}}") == 3
+  end
+
+  test "day9 part 2" do
+    assert Day9.count_garbage("<>") == 0
+    assert Day9.count_garbage("<random characters>") == 17
+    assert Day9.count_garbage("<<<<>") == 3
+    assert Day9.count_garbage("<{!>}>") == 2
+    assert Day9.count_garbage("<!!>") == 0
+    assert Day9.count_garbage("<!!!>>") == 0
+    assert Day9.count_garbage("<{o\"i!a,<{i<a>") == 10
+    assert Day9.count_garbage("abcd<{o\"i!a,<{i<a>") == 10
+    assert Day9.count_garbage("<{o\"i!a,<{i<a>abcd") == 10
+  end
 end
